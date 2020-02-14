@@ -1,0 +1,43 @@
+[user]
+  email = kabir@kwatra.me
+  name = Kabir Kwatra
+
+[core]
+  editor = nvim
+
+[alias]
+  a = add --all
+  ai = add -i
+
+  b = branch
+  bd = branch -d
+
+  c = commit
+  cm = commit -m
+  cam = commit --amend
+
+  cl = clone
+  cld = clone --depth 1
+
+  f = fetch
+  fo = fetch origin
+  fu = fetch upstream
+  
+  ch = checkout
+  chm = checkout master
+  chb = checkout -b
+  
+  ps = push
+  pso = push origin
+
+  pl = pull
+  plo = pull origin
+  plrbo = pull --rebase origin
+  plu = pull upstream
+
+  s = status
+
+  st = stash
+
+[credential]
+  helper = store

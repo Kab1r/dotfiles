@@ -1,0 +1,9 @@
+node_modules/
+
+nvim/plugged/
+
+coc/
+
+helm/
+
+fisher/
