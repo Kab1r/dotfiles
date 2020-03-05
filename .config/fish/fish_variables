@@ -5,7 +5,6 @@ SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR _fish_abbr_dnf:sudo\x20dnf
-SETUVAR _fish_abbr_kubectl:sudo\x20kubectl
 SETUVAR _fish_abbr_rm:rm\x20\x2di
 SETUVAR _fish_abbr_vi:nvim
 SETUVAR _fish_abbr_vim:nvim

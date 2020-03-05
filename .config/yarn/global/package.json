@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "fast-cli": "^2.3.0",
-    "neovim": "^4.7.0",
-    "puppeteer": "^2.0.0"
-  }
-}
