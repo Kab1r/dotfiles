@@ -29,7 +29,11 @@ then
   elif [ "$ID" = "rhel" ] || [ "$ID" = "centos" ]
   then
     echo "Detected CentOS/RHEL"
-    sudo wget https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/RHEL_7/home:TheLocehiliosan:yadm.repo /etc/yum.repos.d/
+    sudo yum install -y wget
+    sudo wget -P /etc/yum.repos.d/ https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/RHEL_7/home:TheLocehiliosan:yadm.repo
+    sudo wget -P /etc/yum.repos.d/  https://download.opensuse.org/repositories/shells:fish:release:3/CentOS_8/shells:fish:release:3.repo
+    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
     sudo yum install -y yadm fish tmux neovim nodejs
 
   elif [ "$ID" = "arch" ]
