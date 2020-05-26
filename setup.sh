@@ -66,7 +66,7 @@ then
   fi
   
   echo "Installing Starship"
-  curl -fsSL https://starship.rs/install.sh | bash
+  curl -fsSL https://starship.rs/install.sh | bash -s -- -y
 fi
 
 yadm clone https://dotfiles.kwatra.me
