@@ -1,0 +1,45 @@
+on: [push, pull_request]
+
+env:
+  CI: "True"
+
+jobs:
+  ubuntu-16_04:
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Script
+        run: |
+          DOTFILES_DEST=$HOME/.local/share/chezmoi
+          mkdir -p $DOTFILES_DEST
+          shopt -s dotglob
+          mv $GITHUB_WORKSPACE/* $DOTFILES_DEST/
+          SETUP_SCRIPT=$DOTFILES_DEST/executable_dot_setup.sh
+          chmod +x $SETUP_SCRIPT
+          sh $SETUP_SCRIPT
+  ubuntu-18_04:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Script
+        run: |
+          DOTFILES_DEST=$HOME/.local/share/chezmoi
+          mkdir -p $DOTFILES_DEST
+          shopt -s dotglob
+          mv $GITHUB_WORKSPACE/* $DOTFILES_DEST/
+          SETUP_SCRIPT=$DOTFILES_DEST/executable_dot_setup.sh
+          chmod +x $SETUP_SCRIPT
+          sh $SETUP_SCRIPT
+  ubuntu-20_04:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Script
+        run: |
+          DOTFILES_DEST=$HOME/.local/share/chezmoi
+          mkdir -p $DOTFILES_DEST
+          shopt -s dotglob
+          mv $GITHUB_WORKSPACE/* $DOTFILES_DEST/
+          SETUP_SCRIPT=$DOTFILES_DEST/executable_dot_setup.sh
+          chmod +x $SETUP_SCRIPT
+          sh $SETUP_SCRIPT

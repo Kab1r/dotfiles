@@ -80,7 +80,12 @@ else
     exit
 fi
 
-chezmoi init https://dotfiles.kwatra.me
+if [ "$CI" = "True" ]
+then
+    chezmoi apply
+else
+    chezmoi init https://dotfiles.kwatra.me
+fi
 
 echo "Installing Doom Emacs"
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
