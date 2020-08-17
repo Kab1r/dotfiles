@@ -48,3 +48,9 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; Completions
+(package! company-tabnine)
+
+;; Misc
+(package! atomic-chrome)
