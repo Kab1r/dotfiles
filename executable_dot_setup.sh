@@ -41,7 +41,7 @@ then
             echo "Debian Distro detected"
             sudo apt-get update
             sudo apt-get install -y curl
-            sudo apt-get install -y fish tmux bash emacs ripgrep fd-find
+            sudo apt-get install -y fish tmux bash emacs ripgrep fd-find git
             chezmoi_install
             starship_install
             ;;
@@ -84,7 +84,7 @@ chezmoi init https://dotfiles.kwatra.me
 
 echo "Installing Doom Emacs"
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-$HOME/.emacs.d/bin/doom install
-$HOME/.emacs.d/bin/doom sync
+$HOME/.emacs.d/bin/doom --yes install
+$HOME/.emacs.d/bin/doom --yes sync
 
 echo "Change Shell to Fish Manually"
