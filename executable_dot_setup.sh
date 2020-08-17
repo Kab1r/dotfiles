@@ -20,8 +20,11 @@ starship_install() {
 }
 
 chezmoi_install() {
+    mkdir -p $HOME/.config
+    cd $HOME/.config
     curl -sfL https://git.io/chezmoi | sh
-    PATH="$HOME/.bin:$PATH"; export PATH
+    PATH="$(pwd)/bin:$PATH"; export PATH
+    cd $HOME
 }
 
 if [ "$OS" = "Linux" ]
@@ -38,7 +41,7 @@ then
             echo "Debian Distro detected"
             sudo apt-get update
             sudo apt-get install -y curl
-            sudo apt-get install -y fish tmux bash emacs ripgrep fd
+            sudo apt-get install -y fish tmux bash emacs ripgrep fd-find
             chezmoi_install
             starship_install
             ;;
@@ -47,7 +50,7 @@ then
             sudo yum install -y curl
             curl --silent --location "$FISH_RPM_URL" | \
                 sudo tee /etc/yum.repos.d/yarn.repo
-            sudo yum install -y  fish tmux bash emacs ripgrep fd
+            sudo yum install -y  fish tmux bash emacs ripgrep fd git
             chezmoi_install
             starship_install
             ;;
@@ -55,13 +58,13 @@ then
             echo "SUSE Distro Detected"
             sudo zypper addrepo "$FISH_RPM_URL"
             sudo zyppper refresh
-            sudo zypper install fish tmux bash emacs ripgrep fd
+            sudo zypper install fish tmux bash emacs ripgrep fd git
             chezmoi_install
             starship_install
             ;;
         arch)
             echo "Arch Distro Detected"
-            sudo pacman -Syu --noconfirm chezmoi fish tmux emacs ripgrep fd
+            sudo pacman -Syu --noconfirm chezmoi fish tmux emacs ripgrep fd git
             starship_install
             ;;
         *)
@@ -81,7 +84,7 @@ chezmoi init https://dotfiles.kwatra.me
 
 echo "Installing Doom Emacs"
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-~/.emacs.d/bin/doom sync
+$HOME/.emacs.d/bin/doom install
+$HOME/.emacs.d/bin/doom sync
 
 echo "Change Shell to Fish Manually"
