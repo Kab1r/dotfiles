@@ -1,12 +1,13 @@
 FROM archlinux
 ARG USER=kabir
+ENV SHELL=fish
 
 RUN pacman -Syu --noconfirm \
     sudo \
-    fish \
+    $SHELL \
     tzdata
 
-RUN useradd -ms /usr/bin/fish $USER
+RUN useradd -ms /usr/bin/$SHELL $USER
 RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER $USER
@@ -19,3 +20,5 @@ RUN SETUP_SCRIPT=$HOME/.local/share/chezmoi/executable_dot_setup.sh && \
     export CI=True  && \
     sh $SETUP_SCRIPT && \
     unset CI
+
+CMD $SHELL
