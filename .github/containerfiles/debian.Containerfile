@@ -48,6 +48,8 @@ WORKDIR /home/$USER/
 
 COPY . .local/share/chezmoi/
 
+RUN sudo chown $USER -R .local
+
 RUN SETUP_SCRIPT=$HOME/.local/share/chezmoi/executable_dot_setup.sh && \
     sudo chmod +x $SETUP_SCRIPT && \
     export CI=True  && \
