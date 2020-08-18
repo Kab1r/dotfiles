@@ -1,0 +1,53 @@
+on: [push, pull_request]
+
+jobs:
+  alpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: alpine
+        uses: craftech-io/package-action@v3.1.0
+        with:
+          tags: alpine
+          dockerfile: .github/containerfiles/alpine.Containerfile
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+  archlinux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: archlinux
+        uses: craftech-io/package-action@v3.1.0
+        with:
+          tags: archlinux
+          dockerfile: .github/containerfiles/archlinux.Containerfile
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+  debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: debian
+        uses: craftech-io/package-action@v3.1.0
+        with:
+          tags: debian
+          dockerfile: .github/containerfiles/debian.Containerfile
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+  fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: fedora
+        uses: craftech-io/package-action@v3.1.0
+        with:
+          tags: fedora
+          dockerfile: .github/containerfiles/fedora.Containerfile
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ubuntu
+        uses: craftech-io/package-action@v3.1.0
+        with:
+          tags: ubuntu
+          dockerfile: .github/containerfiles/ubuntu.Containerfile
+          access_token: ${{ secrets.GITHUB_TOKEN }}
