@@ -3,7 +3,7 @@
 # OS Detection
 OS=$(uname)
 
-FISH_RPM_URL="https://download.opensuse.org/repositories/openSUSE:Factory/standard/openSUSE:Factory.repo"
+FISH_RPM_URL="https://download.opensuse.org/repositories/shells:fish:release:3/openSUSE_Leap_15.2/shells:fish:release:3.repo"
 
 # If linux distro is not detected or darwin
 brew_install() {
@@ -49,8 +49,8 @@ then
             echo "RPM Distro Detected"
             sudo yum install -y curl
             curl --silent --location "$FISH_RPM_URL" | \
-                sudo tee /etc/yum.repos.d/yarn.repo
-            sudo yum install -y  fish tmux bash emacs ripgrep fd git
+                sudo tee /etc/yum.repos.d/fish.repo
+            sudo yum install -y fish tmux bash emacs ripgrep fd-find git
             chezmoi_install
             starship_install
             ;;
@@ -65,6 +65,12 @@ then
         arch)
             echo "Arch Distro Detected"
             sudo pacman -Syu --noconfirm chezmoi fish tmux emacs ripgrep fd git
+            starship_install
+            ;;
+        alpine)
+            echo "Alpine Distro Detected"
+            sudo apk update
+            sudo apk add --no-cache chezmoi fish tmux emacs ripgrep fd git curl bash
             starship_install
             ;;
         *)
