@@ -1,0 +1,34 @@
+# Author: Kabir Kwatra <kabir@kwatra.me>
+
+image: docker:19
+
+stages: [build]
+
+before_script:
+  - docker info
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - >
+      for containerfile_path in $(ls .github/containerfiles/*.Containerfile)
+      do
+        containerfile_name=${containerfile_path##*/}
+        container_tag=${containerfile_name*/%%.*}
+        container_fulltag="CI_REGISTRY_IMAGE/$container_tag"
+
+        echo "Building $containerfile_name with tag $container_fulltag"
+
+        docker build \
+          --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+          --build-arg VCS_REF=`git rev-parse --short HEAD` \
+          --build-arg OCI_SRC_URL=$CI_PROJECT_URL \
+          --cache-from $container_fulltag \
+          -f $containerfile_path \
+          -t $container_fulltag \
+          .
+
+        docker push $container_fulltag
+      done
