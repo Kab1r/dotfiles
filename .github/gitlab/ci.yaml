@@ -1,7 +1,7 @@
 # Author: Kabir Kwatra <kabir@kwatra.me>
 
 image: docker:19
-services: [docker:19-dind]
+services: ["docker:19-dind"]
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
 
