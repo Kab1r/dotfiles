@@ -19,7 +19,7 @@ build:
       for containerfile_path in $(ls .github/containerfiles/*.Containerfile); do
         containerfile_name=${containerfile_path##*/}
         container_tag=${containerfile_name%%.*}
-        container_fulltag="CI_REGISTRY_IMAGE/$container_tag"
+        container_fulltag="$CI_REGISTRY_IMAGE/$container_tag"
         echo "Building $containerfile_name with tag $container_fulltag"
         docker build \
           --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
