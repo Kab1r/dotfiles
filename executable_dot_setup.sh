@@ -91,6 +91,7 @@ then
     chezmoi apply
 else
     chezmoi init https://dotfiles.kwatra.me
+    chezmoi apply
 fi
 
 echo "Installing Doom Emacs"
