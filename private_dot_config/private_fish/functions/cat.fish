@@ -2,7 +2,7 @@ function cat
     if command -qs bat
         bat $argv
     else if command -qs batcat
-        catbat $argv
+        batcat $argv
     else
         command cat $argv
     end
