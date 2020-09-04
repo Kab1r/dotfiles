@@ -1,0 +1,21 @@
+#+TITLE: DotFiles README
+#+DESCRIPTION: Documentation for DotFiles
+
+* Kabir Kwatra's DotFiles
+** Chezmoi, Fish, Doom Emacs
+
+[[https://www.gnu.org/licenses/agpl-3.0][[[https://img.shields.io/badge/License-AGPL%20v3-blue.svg]]]]
+
+Quick Install
+
+#+BEGIN_SRC sh
+  curl -sSL https://dotfiles.kwatra.me/setup.sh | sh
+#+END_SRC
+
+#+RESULTS:
+
+*** Features
+- Single-line Installer
+- Support for most common Linux distros and MacOS
+- Doom flavored Emacs
+- Starship themed Fish Shell
