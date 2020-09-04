@@ -51,6 +51,4 @@
 
 ;; Completions
 (package! company-tabnine)
-
-;; Misc
-(package! atomic-chrome)
+(package! org-superstar)

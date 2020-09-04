@@ -70,3 +70,8 @@
   :after company
   :config
   (cl-pushnew 'company-tabnine (default-value 'company-backends)))
+
+(use-package! org-superstar
+  :hook (org-mode . org-superstar-mode)
+  )
+
