@@ -41,7 +41,14 @@ then
             echo "Debian Distro detected"
             sudo apt-get update
             sudo apt-get install -y curl
-            sudo apt-get install -y fish tmux bash emacs ripgrep fd-find git
+            sudo apt-get install -y fish tmux ripgrep fd-find git
+            if [ "$CODESPACES" = true ]
+            then
+                echo "Codespaces detected"
+                # Emacs not required for Codespaces
+            else
+                sudo apt-get install -y emacs
+            fi
             chezmoi_install
             starship_install
             ;;
@@ -90,13 +97,18 @@ if [ "$CI" = "True" ]
 then
     chezmoi apply
 else
-    chezmoi init https://dotfiles.kwatra.me
+    chezmoi init https://dotfiles.kwatra.me/git
     chezmoi apply
 fi
 
-echo "Installing Doom Emacs"
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-$HOME/.emacs.d/bin/doom --yes install
-$HOME/.emacs.d/bin/doom --yes sync
+if [ "$CODESPACES" = true ]
+then
+    echo "Skipping Doom Emacs Installation"
+else
+    echo "Installing Doom Emacs"
+    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+    $HOME/.emacs.d/bin/doom --yes install
+    $HOME/.emacs.d/bin/doom --yes sync
+fi
 
 echo "Change Shell to Fish Manually"
