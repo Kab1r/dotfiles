@@ -11,6 +11,12 @@
 #+end_src
 
 * Installation
+** Prerequisites
++ Git
++ Emacs
++ ripgrep
++ GNU find
+** Script
 #+begin_src sh
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 git clone https://github.com/Kab1r/.doom.d
