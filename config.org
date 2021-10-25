@@ -1,0 +1,88 @@
+#+TITLE: Kabir's Doom Emacs Config
+#+AUTHOR: Kabir Kwatra
+#+EMAIL: kabir@kwatra.me
+#+LANGUAGE: en
+#+STARTUP: noinlineimages
+#+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+#+OPTIONS: toc:nil
+
+#+begin_src emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+end_src
+
+* Installation
+#+begin_src sh
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+git clone https://github.com/Kab1r/.doom.d
+~/.emacs.d/bin/doom install
+#+end_src
+
+* Me.
+#+begin_src emacs-lisp
+(setq user-full-name "Kabir Kwatra"
+      user-mail-address "kabir@kwatra.me")
+#+end_src
+
+* Appearance
+** Font
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "FiraCode Nerd Font")) ;; "Iosevka" :size 16))
+#+end_src
+** Dracula Theme
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-dracula)
+#+end_src
+
+* Editor
+** Line Numbers
+This determines the style of line numbers in effect. If set to `nil', line
+numbers are disabled. For relative line numbers, set this to `relative'.
+#+begin_src emacs-lisp
+(setq display-line-numbers-type 'relative)
+#+end_src
+** Smooth Scrolling
+Pixel-based smooth scrolling using [[https://github.com/io12/good-scroll.el][good-scroll.el]].
+#+begin_src emacs-lisp :tangle packages.el
+(package! good-scroll)
+#+end_src
+#+begin_src emacs-lisp
+(good-scroll-mode 1)
+#+end_src
+** Transparency
+#+begin_src emacs-lisp
+ (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+ (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+#+end_src
+
+* Language Specific
+** Org Mode
+*** Org Directory
+If you use `org' and don't want your org files in the default location below,
+change `org-directory'. It must be set before org loads!
+#+begin_src emacs-lisp
+(setq org-directory "~/org/")
+#+end_src
+
+*** Org Latex
+#+begin_src emacs-lisp
+(setq org-image-actual-width 400)
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("koma-article"
+               "\\documentclass{scrartcl}
+                \\usepackage{microtype}
+                \\usepackage{tgtermes}
+                \\usepackage[scale=.9]{tgheros}
+                \\usepackage{tgcursor}
+                \\usepackage{paralist}
+                \\newcommand{\\rc}{$^{14}C$}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+end_src
+** Deno (Web / Typescript)
+#+begin_src emacs-lisp :tangle packages.el
+(package! deno-fmt)
+#+end_src
