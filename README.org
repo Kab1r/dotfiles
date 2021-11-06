@@ -1,0 +1,18 @@
+#+TITLE: Kabir's Fish Config
+#+AUTHOR: Kabir Kwatra
+#+EMAIL: kabir@kwatra.me
+#+LANGUAGE: en
+#+STARTUP: noinlineimages
+#+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+#+OPTIONS: toc:nil
+
+** Prerequisites
++ [[https://fishshell.com][Fish shell]]
++ [[https://git.io/fisher][Fisher Plugin Manager]]
++ [[https://git-scm.com][Git]]
+
+** Installation
+#+begin_src sh
+git clone https://github.com/Kab1r/.fish ~/.config/fish
+fisher update
+#+end_src
