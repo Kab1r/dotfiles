@@ -1,0 +1,28 @@
+
+format = """
+╭─$all\
+"""
+[line_break]
+disabled = true
+
+[character]
+format = "\n╰─$symbol "
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+vicmd_symbol   = "[❮](bold green)"
+
+[username]
+format = "[$user]($style)@"
+show_always = true
+style_user = '#DF005F'
+
+[hostname]
+format = "[$hostname]($style)::"
+ssh_only = false
+
+[directory]
+style = '#87FF00'
+truncation_symbol = "…/"
+
+[gcloud]
+disabled = true
