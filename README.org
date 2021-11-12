@@ -8,8 +8,11 @@
 
 ** Prerequisites
 + [[https://fishshell.com][Fish shell]]
-+ [[https://git.io/fisher][Fisher Plugin Manager]]
++ [[https://github.com/jorgebucaran/fisher][Plugin Manager for Fish]]
 + [[https://git-scm.com][Git]]
++ [[https://github.com/ajeetdsouza/zoxide][zoxide]] /(optional)/
++ [[https://starship.rs][Starship]] /(optional)/
++ [[https://github.com/nvbn/thefuck][The Fuck]] /(optional)/
 
 ** Installation
 #+begin_src sh
