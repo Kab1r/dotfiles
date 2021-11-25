@@ -1,4 +1,4 @@
 configuration {
-    theme: "~/.config/leftwm/bluetooth.rasi";
+    theme: "theme.rasi";
     show-icons: true;
 }
