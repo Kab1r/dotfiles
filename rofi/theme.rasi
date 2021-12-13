@@ -1,13 +1,3 @@
-configuration {
-  modi: "drun";
-  show-icons: true;
-  disable-history: false;
-  fullscreen: false;
-  hide-scrollbar: true;
-  sidebar-mode: false;
-  matching: "fuzzy";
-}
-
 * {
   font: "SauceCodePro Nerd Font Semibold 11";
   foreground: #f8f8f2;

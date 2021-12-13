@@ -6,7 +6,7 @@ rofi_command="rofi -no-config -theme $THEME"
 
 # Options
 shutdown=" Shutdown"
-reboot="ﰇ Restart"
+reboot=" Restart"
 lock=" Lock"
 suspend="鈴 Suspend"
 logout=" Logout"

@@ -1,4 +1,12 @@
 configuration {
-    theme: "theme.rasi";
     show-icons: true;
+    modi: "drun";
+    disable-history: false;
+    fullscreen: false;
+    hide-scrollbar: true;
+    sidebar-mode: false;
+    matching: "fuzzy";
 }
+
+
+@theme "theme.rasi"

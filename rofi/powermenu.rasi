@@ -6,6 +6,8 @@ configuration {
     sidebar-mode:                   false;
 }
 
+@theme "theme.rasi"
+
 * {
     font:                           "SauceCodePro Nerd Font Semibold 11";
     foreground:                     #f8f8f2;
