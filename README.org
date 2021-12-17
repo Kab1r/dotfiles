@@ -6,6 +6,8 @@
 #+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
 #+OPTIONS: toc:nil
 
+[[https://asciinema.org/a/459391][./.github/assets/screenshot.svg]]
+
 ** Prerequisites
 + [[https://fishshell.com][Fish shell]]
 + [[https://github.com/jorgebucaran/fisher][Plugin Manager for Fish]]
