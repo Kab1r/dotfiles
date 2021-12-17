@@ -2,14 +2,14 @@
 
 # Terminal Editor
 if command -qs emacsclient
-    set EDITOR "emacsclient -c"
+    set -gx EDITOR "emacsclient -c"
 else if command -qs emacs
-    set EDITOR emacs
+    set -gx EDITOR emacs
 else if command -qs vim
-    set EDITOR vim
+    set -gx EDITOR vim
 end
 
 # Visual Editor
 if command -qs code
-    set VISUAL code
+    set -gx VISUAL code
 end
