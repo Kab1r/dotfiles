@@ -26,6 +26,9 @@ super + shift + e
 super + Escape
   pkill -USR1 -x sxhkd
 
+# screen lock
+super + shift + l
+  i3lock -i ~/Pictures/dracula-purplish-1080p.png
 #
 # bspwm hotkeys
 #
@@ -147,16 +150,20 @@ super + {Left,Down,Up,Right}
 XF86AudioRaiseVolume
   amixer -q set Master 5%+ unmute
 
-# Still muøltimedia
 XF86AudioLowerVolume
   amixer -q set Master 5%- unmute
 
-# still
 XF86AudioMute
   amixer -D pulse sset Master toggle-mute
-  
-# amixer -q set Master toggle
-# Simple amixer command seems to have problems unmuting device
+
+XF86AudioPlay
+  playerctl play-pause
+
+XF86AudioNext
+  playerctl next
+
+XF86AudioPrev
+  playerctl previous
 
 # Brightness up
 XF86MonBrightnessUp

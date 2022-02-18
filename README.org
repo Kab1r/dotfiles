@@ -13,6 +13,7 @@
   + [[./rofi/config.rasi][Config]]
 + [[https://github.com/kovidgoyal/kitty][Kitty Terminal Emulator]] /(optional)/
 + [[https://github.com/bear24rw/alsa-utils][amixer]] /(optional)/
++ playerctl (optional)
 + [[https://github.com/haikarainen/light][Light Backlight Utility]] /(optional)/
 + [[https://flameshot.org/][Flameshot Screenshot Software]] /(optional)/
 
