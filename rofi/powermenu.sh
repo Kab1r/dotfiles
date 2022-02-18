@@ -5,34 +5,34 @@ THEME="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/powermenu.rasi"
 rofi_command="rofi -no-config -theme $THEME"
 
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-lock=" Lock"
-suspend="鈴 Suspend"
-logout=" Logout"
+o_shutdown=" Shutdown"
+o_reboot=" Restart"
+o_lock=" Lock"
+o_suspend="鈴 Suspend"
+o_logout=" Logout"
 
 # Variable passed to rofi
-options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+options="$o_logout\n$o_reboot\n$o_shutdown\n$o_lock\n$o_suspend"
 
 chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 0)"
 case $chosen in
-    $shutdown)
+    $o_shutdown)
         systemctl poweroff
         ;;
-    $reboot)
+    $o_reboot)
         systemctl reboot
         ;;
-    $lock)
+    $o_lock)
         if [[ -f /usr/bin/i3lock ]]; then
-            i3lock
+            i3lock -i ~/Pictures/dracula-purplish-1080p.png
         elif [[ -f /usr/bin/betterlockscreen ]]; then
             betterlockscreen -l
         fi
         ;;
-    $suspend)
+    $o_suspend)
         systemctl suspend
         ;;
-    $logout)
+    $o_logout)
         # $HOME/.config/leftwm/themes/current/down && pkill leftwm
 	bspc query --nodes | while read -r winid; do
 	    xdotool windowkill "$winid"

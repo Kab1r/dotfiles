@@ -27,9 +27,9 @@ configuration {
     border:                         0;
     border-color:                   @background;
     border-radius:                  8;
-    width:                          300px;
-    location:                       northeast;
-    x-offset:                       -8;
+    width:                          120px;
+    location:                       northwest;
+    x-offset:                       8;
     y-offset:                       40;
 }
 
