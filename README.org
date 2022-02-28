@@ -3,14 +3,13 @@
 #+EMAIL: kabir@kwatra.me
 #+LANGUAGE: en
 #+STARTUP: noinlineimages
-#+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
 #+OPTIONS: toc:nil
 
 [[https://asciinema.org/a/459391][./.github/assets/screenshot.svg]]
 
 ** Prerequisites
 + [[https://fishshell.com][Fish shell]]
-+ [[https://github.com/jorgebucaran/fisher][Plugin Manager for Fish]]
++ [[https://github.com/jorgebucaran/fisher][Fisher Plugin Manager for Fish]]
 + [[https://git-scm.com][Git]]
 + [[https://github.com/ajeetdsouza/zoxide][zoxide]] /(optional)/
 + [[https://starship.rs][Starship]] /(optional)/
@@ -19,5 +18,154 @@
 ** Installation
 #+begin_src sh
 git clone https://github.com/Kab1r/.fish ~/.config/fish
+#+end_src
+#+begin_src fish :results drawer
 fisher update
+#+end_src
+
+#+RESULTS:
+:results:
+update version
+Fetching
+Fetching
+Fetching
+           /home/kabir/.config/fish/functions/__history_previous_command.fish
+           /home/kabir/.config/fish/functions/__history_previous_command_arguments.fish
+           /home/kabir/.config/fish/conf.d/plugin-bang-bang.fish
+           /home/kabir/.config/fish/functions/fisher.fish
+           /home/kabir/.config/fish/completions/fisher.fish
+           /home/kabir/.config/fish/functions/spark.fish
+           /home/kabir/.config/fish/completions/spark.fish
+Updated 3 plugin/s
+:end:
+
+** Plugins
+#+begin_src fundamental :tangle fish_plugins
+Kab1r/Fisher-Bang-Bang
+jorgebucaran/fisher
+jorgebucaran/spark.fish
+#+end_src
+** Configurations
+*** Editor
+**** Terminal
+#+begin_src fish :tangle conf.d/editor.fish :shebang "#!/usr/bin/env fish"
+if command -qs emacsclient
+    set -gx EDITOR "emacsclient -nw -c"
+else if command -qs emacs
+    set -gx EDITOR "emacs -nw"
+else if command -qs vim
+    set -gx EDITOR vim
+else if command -qs vi
+    set -gx EDITOR vi
+end
+#+end_src
+**** Visual
+#+begin_src fish :tangle conf.d/editor.fish :shebang "#!/usr/bin/env fish"
+if command -qs emacsclient
+    set -gx VISUAL "emacsclient -c"
+else if command -qs emacs
+    set -gx VISUAL "emacs -c"
+else if command -qs code
+    set -gx VISUAL code
+end
+#+end_src
+*** Keybinds
+#+begin_src fish :tangle conf.d/keybinds.fish :shebang "#!/usr/bin/env fish"
+set fish_key_bindings fish_vi_key_bindings
+#+end_src
+
+*** The Fuck
+#+begin_src fish :tangle conf.d/fuck.fish :shebang "#!/usr/bin/env fish"
+if command -qs thefuck
+    thefuck --alias | source
+end
+#+end_src
+*** Man Pager
+#+begin_src fish :tangle conf.d/manpager.fish :shebang "#!/usr/bin/env fish"
+if command -qs sh and command -qs sed and command -qs bat
+    set -gx MANPAGER "sh -c 'sed -e s/.\\\\x08//g | bat -l man -p --theme Dracula'"
+end
+#+end_src
+*** PATH
+#+begin_src fish :tangle conf.d/user_path.fish :shebang "#!/usr/bin/env fish"
+set -gxa PATH $HOME/.local/bin
+
+if command -qs cargo
+    set -gxa PATH $HOME/.cargo/bin
+end
+if command -qs deno
+    set -gxa PATH $HOME/.deno/bin
+end
+
+if command -qs emacs
+    set -gxa PATH $HOME/.emacs.d/bin
+end
+#+end_src
+*** Starship Prompt
+#+begin_src fish :tangle conf.d/starship.fish :shebang "#!/usr/bin/env fish"
+if command -qs starship
+    set -gx STARSHIP_CONFIG $HOME/.config/fish/starship.toml
+    starship init fish | source
+end
+#+end_src
+#+begin_src conf :tangle starship.toml
+format = """
+╭─$all\
+"""
+[line_break]
+disabled = true
+
+[character]
+format = "\n╰─$symbol "
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+vicmd_symbol   = "[❮](bold green)"
+
+[username]
+format = "[$user]($style)@"
+show_always = true
+style_user = '#DF005F'
+
+[hostname]
+format = "[$hostname]($style)::"
+ssh_only = false
+
+[directory]
+style = '#87FF00'
+truncation_symbol = "…/"
+
+[gcloud]
+disabled = true
+#+end_src
+
+*** Greeting
+#+begin_src fish :tangle conf.d/greeting.fish :shebang #!/usr/bin/env fish
+set fish_greeting
+#+end_src
+*** Zoxide
+#+begin_src fish :tangle conf.d/zoxide_init.fish :shebang #!/usr/bin/env fish
+if command -qs zoxide
+    zoxide init fish | source
+end
+#+end_src
+** Functions
+*** ls
+#+begin_src fish :tangle functions/ls.fish :shebang #!/usr/bin/env fish
+function ls
+  if command -qs exa
+    exa --icons --color=always --group-directories-first $argv
+  else
+    command ls $argv
+  end
+end
+#+end_src
+*** ssh
+#+begin_src fish :tangle functions/ssh.fish :shebang #!/usr/bin/env fish
+function ssh
+    if test "$TERM" = xterm-kitty
+        kitty +kitten ssh $argv
+    else
+        command ssh $argv
+    end
+end
 #+end_src

@@ -1,5 +1,4 @@
 #!/usr/bin/env fish
-
 set -gxa PATH $HOME/.local/bin
 
 if command -qs cargo
