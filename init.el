@@ -138,6 +138,7 @@
        (org                     ; + organize your plain life in plain text
             +dragndrop          ; +-> Drag n' Drop
             +brain              ; +-> Concept Mapping
+            +roam2              ; +-> Non-Hierarchical Note-Taking
             +pretty             ; +-> oOoOOOoooO
             +jupyter            ; +-> notebooks in org
             +pandoc             ; +-> maybe you like markdown more :(
