@@ -1,0 +1,27 @@
+#+TITLE: BSPWM Configuration
+#+AUTHOR: Kabir Kwatra <kabir@kwatra.me>
+
+** Dependencies
++ [[https://github.com/baskerville/bspwm][BSP Window Manager]]
+  + [[./bspwmrc][WM Config]]
++ [[https://github.com/baskerville/sxhkd][SX Hotkey Daemon]]
+  + [[./sxhkd/sxhkdrc][Keybinds]]
++ [[https://github.com/polybar/polybar][Polybar]]
+  + [[./polybar/config.ini][Bar Config]]
++ [[https://github.com/davatorium/rofi][Rofi Application Launcher]]
+  + [[./rofi/theme.rasi][Theme]]
+  + [[./rofi/config.rasi][Config]]
++ [[https://github.com/kovidgoyal/kitty][Kitty Terminal Emulator]] /(optional)/
++ [[https://github.com/bear24rw/alsa-utils][amixer]] /(optional)/
++ playerctl (optional)
++ [[https://github.com/haikarainen/light][Light Backlight Utility]] /(optional)/
++ [[https://flameshot.org/][Flameshot Screenshot Software]] /(optional)/
+
+** Install
+#+begin_src sh
+git clone \
+    https://github.com/Kab1r/.bspwm \
+    ~/.config/bspwm
+
+~/.config/bspwm/install.sh
+#+end_src

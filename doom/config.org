@@ -1,0 +1,154 @@
+#+TITLE: Kabir's Doom Emacs Configuration
+#+AUTHOR: Kabir Kwatra
+#+EMAIL: kabir@kwatra.me
+#+LANGUAGE: en
+#+STARTUP: noinlineimages
+#+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+#+OPTIONS: toc:nil
+
+#+begin_src emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+end_src
+
+* Installation
+** Prerequisites
++ [[https://git-scm.com][Git]]
++ [[https://gnu.org/software/emacs][GNU Emacs]]
++ [[https://gnu.org/software/findutils][GNU find]]
++ [[https://crates.io/crates/ripgrep][ripgrep]]
++ [[https://crates.io/crates/fd][fd]] /(optional)/
++ Fira Code Nerd Font (or Iosevka: see below)
+
+** Script
+#+begin_src sh :tangle no :exports code
+git clone https://github.com/Kab1r/.doom.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+#+end_src
+
+* Me.
+#+begin_src emacs-lisp :exports code
+(setq user-full-name "Kabir Kwatra"
+      user-mail-address "kabir@kwatra.me")
+#+end_src
+
+* Editor
+** Font
+Default font is =VictorMono=, however this can be adjusted here as needed.
+#+begin_src emacs-lisp :exports code
+(setq doom-font (font-spec :family "VictorMono Nerd Font" ;; "Iosevka"
+                           :size 16))
+#+end_src
+** Dracula Theme
+:PROPERTIES:
+:ROAM_REFS: https://draculatheme.com
+:END:
+#+begin_src emacs-lisp :exports code
+(setq doom-theme 'doom-dracula)
+#+end_src
+** Transparency
+#+begin_src emacs-lisp :exports code
+(after! doom (doom/set-frame-opacity 50))
+#+end_src
+** Line Numbers
+This determines the style of line numbers in effect. If set to `nil', line
+numbers are disabled. For relative line numbers, set this to `relative'.
+#+begin_src emacs-lisp :exports code
+(setq display-line-numbers-type 'relative)
+#+end_src
+** Smooth Scrolling
+Pixel-based smooth scrolling using [[https://github.com/io12/good-scroll.el][good-scroll.el]].
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! good-scroll)
+#+end_src
+#+begin_src emacs-lisp :exports code
+(good-scroll-mode 1)
+#+end_src
+** Snippets
+Additional code snippets from [[https://github.com/AndreaCrotti/yasnippet-snippets][yasnippet-snippets]].
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! yasnippet-snippets)
+#+end_src
+** Transparency
+#+begin_src emacs-lisp :exports code
+ (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+ (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+#+end_src
+
+* Language Specific
+** Org Mode
+*** Default Directory
+If you use `org' and don't want your org files in the default location below,
+change `org-directory'. It must be set before org loads!
+#+begin_src emacs-lisp :exports code
+(setq org-directory "~/org/")
+#+end_src
+*** Headlines and Lists
+#+begin_src emacs-lisp :exports code
+(setq org-hide-emphasis-markers t)
+#+end_src
+*** Native Foundations
+#+begin_src emacs-lisp :exports code
+(setq org-src-fontify-natively t)
+#+end_src
+*** LaTeX Packages
+#+begin_src emacs-lisp :exports code
+(after! org
+  (add-to-list 'org-latex-default-packages-alist '("margin=0.75in" "geometry")))
+#+end_src
+*** Roam-UI
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(unpin! org-roam)
+(package! org-roam-ui)
+#+end_src
+#+begin_src emacs-lisp :exports code
+(use-package! websocket :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+#+end_src
+** [[https://deno.land][Deno(.land)]]
+*** Code Formatting
+Package to support =deno fmt=.
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! deno-fmt)
+#+end_src
+Hook =deno= into typescript major modes.
+#+begin_src emacs-lisp :exports code
+(add-hook 'typescript-mode-hook 'deno-fmt-mode)
+(add-hook 'typescript-tsx-mode-hook 'deno-fmt-mode)
+(add-hook 'js2-mode-hook 'deno-fmt-mode)
+#+end_src
+** Systemd
+Major mode for service and timer files.
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! systemd)
+#+end_src
+** [[https://wiki.archlinux.org/title/PKGBUILD][PKGBUILD]]
+Major mode for Arch Linux package script.
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! pkgbuild-mode)
+#+end_src
+** Jupyter
+#+begin_src emacs-lisp :exports code
+(setq ein:output-area-inlined-images t)
+#+end_src
+** Mermaid
+Major mode for [[https://mermaidjs.github.io/][mermaid]] and minor mode for org-babel.
+#+begin_src emacs-lisp :tangle packages.el :exports code
+(package! mermaid-mode)
+(package! ob-mermaid)
+#+end_src
+Set path to mermaid CLI for minor mode.
+#+begin_src emacs-lisp :exports code
+;; (setq ob-mermaid-cli-path (locate-file "mmdc" exec-path))
+#+end_src

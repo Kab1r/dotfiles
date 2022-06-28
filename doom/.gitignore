@@ -1,0 +1,11 @@
+# All Files
+*
+
+# Except
+!README.org
+!config.org
+!init.el
+
+!.gitattributes
+!.gitignore
+
