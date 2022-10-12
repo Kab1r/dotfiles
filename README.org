@@ -87,19 +87,41 @@ if command -qs sh and command -qs sed and command -qs bat
 end
 #+end_src
 *** PATH
+**** Local Dir
 #+begin_src fish :tangle conf.d/user_path.fish :shebang "#!/usr/bin/env fish"
 set -gxa PATH $HOME/.local/bin
+#+end_src
 
+**** Rust / Cargo
+#+begin_src fish :tangle conf.d/user_path.fish
 if command -qs cargo
     set -gxa PATH $HOME/.cargo/bin
 end
+#+end_src
+
+**** Deno
+#+begin_src fish :tangle conf.d/user_path.fish
 if command -qs deno
     set -gxa PATH $HOME/.deno/bin
 end
+#+end_src
 
+**** Flutter / Dart
+#+begin_src fish :tangle conf.d/user_path.fish
+if command -qs dart
+    set -gxa PATH $HOME/.pub-cache/bin
+end
+#+end_src
+
+**** Emacs
+#+begin_src fish :tangle conf.d/user_path.fish
 if command -qs emacs
     set -gxa PATH $HOME/.emacs.d/bin
 end
+#+end_src
+**** Depot Tools
+#+begin_src fish :tangle conf.d/user_path.fish
+set -gxa PATH /opt/depot_tools
 #+end_src
 *** Starship Prompt
 #+begin_src fish :tangle conf.d/starship.fish :shebang "#!/usr/bin/env fish"
