@@ -1,0 +1,36 @@
+[map "fad1e098-d1da-39f7-85c5-eeead62e9c5b"]
+	object = 3c5b216b7dd4e3b7c39877168c36ac7a2557ef8c
+	path = doom
+	stage = sync
+	type = extract module
+[map "bb0ec5be-5c04-358f-bf38-5f0c6e6379fd"]
+	object = 774f6287f23497f55dbf8ae987c43129e1ea6bfb
+	path = bspwm
+	stage = sync
+	type = extract module
+[module "248a4b77-99eb-34e5-bce3-4d0cd374a56e"]
+	conflict = request-pull
+	path = doom
+	pull = merge subtree
+	pull = squash never
+	ref = if refs/heads/master sync refs/heads/main
+	url = agnostic://gh/420842542
+[module "f653b35b-1549-3a9a-b4cb-8efbd79eb941"]
+	conflict = request-pull
+	path = bspwm
+	pull = merge subtree
+	pull = squash never
+	ref = if refs/heads/master sync refs/heads/main
+	url = agnostic://gh/431707834
+[module "56718317-2f38-3bb1-94b1-1532aa07941d"]
+	conflict = request-pull
+	path = fish
+	pull = merge subtree
+	pull = squash never
+	ref = if refs/heads/master sync refs/heads/main
+	url = agnostic://gh/425371118
+[map "6f746052-09c8-3ff2-90e7-7fbb073e476f"]
+	object = 00db9ad09f3321d94f4ee03034b0d3813100cdb8
+	path = fish
+	stage = sync
+	type = extract module

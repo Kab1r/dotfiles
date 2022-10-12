@@ -1,7 +1,7 @@
 [map "4ea40703-ceeb-30eb-926c-153a7f8fe6c8"]
 	object = 34914c5d978f615f22a0d162d8776aa2ec43bac5
 	type = include + expand tree
-[map "d9d75770-3de8-31b1-99c1-f6e0402bd41e"]
-	object = 1909898c4b4ef042e47150382b950c6455a4cc3e
+[map "7ef5659e-fffe-39a2-a4b1-05247a41520b"]
+	object = a94a22935622491fc301c3a9440ad2abe5792c87
 	path = bspwm
 	type = expand module
